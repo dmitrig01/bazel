@@ -195,7 +195,7 @@ def _mvn_download(ctx, paths, fully_qualified_name):
     mvn_artifact = "-Dartifact=%s" % fully_qualified_name
     mvn_transitive = "-Dtransitive=false"
     if hasattr(ctx.attr, "repository") and ctx.attr.repository != "":
-        mvn_flags += "-Dmaven.repo.remote=%s " % ctx.attr.repository
+        mvn_flags += "-DremoteRepositories=%s " % ctx.attr.repository
     command = " ".join(["mvn", mvn_flags, mvn_get, mvn_transitive, mvn_artifact])
     exec_result = _execute(ctx, command)
     if exec_result.return_code != 0:
